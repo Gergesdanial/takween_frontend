@@ -1,0 +1,32 @@
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.logoSpin {
+  transition: transform 0.3s ease;
+  transform: rotate(0deg);
+}
+
+.logoSpin:hover {
+  animation: spin 2s linear infinite;
+}
+
+.loadingLogoSpin {
+  transition: transform 0.3s ease;
+  transform: rotate(0deg);
+  animation: spin 2s linear infinite;
+}
+
+.centerDivLogoSpin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100vh;
+}
