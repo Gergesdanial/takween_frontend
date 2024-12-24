@@ -10,7 +10,6 @@ import DataCollectionIcon from "../../Icons/dataCollectionIcon";
 import ProjectsIcon from "../../Icons/projectIcon";
 import DataProcessing from "../../Icons/processingIcon";
 import VisualizeIcon from "../../Icons/VisualizeIcon";
-import AutomaticIcon from "../../Icons/automaticIcon"; // Import the AutomaticIcon component
 
 export default function SideBar({ drawerState, setDrawerState }) {
   return (
