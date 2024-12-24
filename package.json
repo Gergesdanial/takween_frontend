@@ -47,6 +47,7 @@
     "react-dom": "^18.3.1",
     "react-filepond": "^7.1.2",
     "react-heatmap-grid": "^0.9.1",
+    "react-split-pane-v2": "^1.0.3",
     "react-plotly.js": "^2.6.0",
     "react-slick": "^0.30.2",
     "react-type-animation": "^3.2.0",
