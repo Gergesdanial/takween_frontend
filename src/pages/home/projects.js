@@ -34,12 +34,12 @@ export async function getServerSideProps(context) {
   const { accessToken } = cookieParse.parse(cookies);
 
   try {
-    const projects = (await AxiosWrapper.get("http://127.0.0.1:8000/projects", {
+    const projects = (await AxiosWrapper.get("http://50.19.124.30:8000/projects", {
       accessToken: accessToken || "",
     })).data;
 
     const projectsWithUsers = await Promise.all(projects.map(async (project) => {
-      const userCreatedProject = (await AxiosWrapper.get(`http://localhost:8000/users/${project.created_by_id}`, {
+      const userCreatedProject = (await AxiosWrapper.get(`http://50.19.124.30:8000/users/${project.created_by_id}`, {
         accessToken: accessToken || "",
       })).data;
       return { ...project, user: userCreatedProject };

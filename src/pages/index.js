@@ -18,7 +18,7 @@ export default function Root() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const currentUser = (await AxiosWrapper.get("http://127.0.0.1:8000/currentuser")).data;
+        const currentUser = (await AxiosWrapper.get("http://50.19.124.30:8000/currentuser")).data;
         if (currentUser) {
           router.push("/home/projects");
         }
