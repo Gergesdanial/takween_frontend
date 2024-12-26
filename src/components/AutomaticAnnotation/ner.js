@@ -49,7 +49,7 @@ export default function NERAnnotation({ projects, user }) {
         }
         const accessToken = tokenPair.split("=")[1];
 
-        const response = await AxiosWrapper.get("http://127.0.0.1:8000/list-user-models", {
+        const response = await AxiosWrapper.get("http://50.19.124.30:8000/list-user-models", {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
@@ -95,12 +95,12 @@ export default function NERAnnotation({ projects, user }) {
       let response;
       if (useCustomModel) {
         response = await AxiosWrapper.post(
-          `http://127.0.0.1:8000/annotate-with-custom-ner-model/${selectedProject}/${selectedDataSource}/${selectedModel}`,
+          `http://50.19.124.30:8000/annotate-with-custom-ner-model/${selectedProject}/${selectedDataSource}/${selectedModel}`,
           payload
         );
       } else {
         response = await AxiosWrapper.post(
-          `http://127.0.0.1:8000/NER-annotate/${selectedProject}/${selectedDataSource}`,
+          `http://50.19.124.30:8000/NER-annotate/${selectedProject}/${selectedDataSource}`,
           payload
         );
       }
@@ -286,25 +286,25 @@ export async function getServerSideProps(context) {
   const { accessToken } = cookieParse.parse(cookies);
 
   try {
-    const projects = (await AxiosWrapper.get("http://127.0.0.1:8000/projects", {
+    const projects = (await AxiosWrapper.get("http://50.19.124.30:8000/projects", {
       accessToken: accessToken || "",
     })).data;
 
     const projectsWithUsersDataSources = await Promise.all(
       projects.map(async (project) => {
         const userCreatedProject = (await AxiosWrapper.get(
-          `http://127.0.0.1:8000/users/${project.created_by_id}`,
+          `http://50.19.124.30:8000/users/${project.created_by_id}`,
           { accessToken: accessToken || "" }
         )).data;
         const fileDataSources = (await AxiosWrapper.get(
-          `http://127.0.0.1:8000/projects/${project.id}/file-data-sources`,
+          `http://50.19.124.30:8000/projects/${project.id}/file-data-sources`,
           { accessToken: accessToken || "" }
         )).data;
         return { ...project, user: userCreatedProject, dataSources: fileDataSources };
       })
     );
 
-    const user = (await AxiosWrapper.get("http://127.0.0.1:8000/currentuser", {
+    const user = (await AxiosWrapper.get("http://50.19.124.30:8000/currentuser", {
       accessToken: accessToken || "",
     })).data;
 

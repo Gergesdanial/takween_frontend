@@ -50,7 +50,7 @@ export default function Speech(
 
         formData.append("files", files.map((f) => f.file)[0]);
 
-        await AxiosWrapper.post(`http://127.0.0.1:8000/projects/${jobData.projectId}/file-data-sources/speech`, formData, {
+        await AxiosWrapper.post(`http://50.19.124.30:8000/projects/${jobData.projectId}/file-data-sources/speech`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

@@ -21,7 +21,7 @@ export default function Histogram({ projects }) {
       setIsLoading(true);
       try {
         const response = await AxiosWrapper.get(
-          `http://127.0.0.1:8000/projects/${selectedProject}/jobs`
+          `http://50.19.124.30:8000/projects/${selectedProject}/jobs`
         );
         setJobs(response.data.jobs || []);
       } catch (err) {
@@ -46,7 +46,7 @@ export default function Histogram({ projects }) {
     setIsLoading(true);
     try {
       const response = await AxiosWrapper.get(
-        `http://127.0.0.1:8000/projects/${selectedProject}/jobs/${selectedJob}/tag-frequencies`
+        `http://50.19.124.30:8000/projects/${selectedProject}/jobs/${selectedJob}/tag-frequencies`
       );
       setTagFrequencies(response.data.tag_frequencies || {});
     } catch (err) {

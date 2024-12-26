@@ -39,7 +39,7 @@ export async function getServerSideProps(context) {
     })).data;
 
     const projectsWithUsers = await Promise.all(projects.map(async (project) => {
-      const userCreatedProject = (await AxiosWrapper.get(`http://50.19.124.30:8000/users/${project.created_by_id}`, {
+      const userCreatedProject = (await AxiosWrapper.get(`http://50.19.124.30/users/${project.created_by_id}`, {
         accessToken: accessToken || "",
       })).data;
       return { ...project, user: userCreatedProject };
@@ -47,7 +47,8 @@ export async function getServerSideProps(context) {
 
     return { props: { projects: projectsWithUsers } };
   } catch (error) {
-    if (error.response.status === 401) {
+    // Check if the error is a response error and handle 401
+    if (error.response && error.response.status === 401) {
       return {
         redirect: {
           destination: "/",
@@ -55,6 +56,11 @@ export async function getServerSideProps(context) {
         },
       };
     }
+
+    // Handle unexpected errors and log for debugging
+    console.error("Error fetching projects:", error.message);
+
+    // Return empty projects array to avoid breaking the page
+    return { props: { projects: [] } };
   }
-  return null;
 }

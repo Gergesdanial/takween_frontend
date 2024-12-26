@@ -22,7 +22,7 @@ export default function NavBar({
 
   useEffect(() => {
     const fetchUser = async () => {
-      const currentUser = (await AxiosWrapper.get("http://127.0.0.1:8000/currentuser")).data;
+      const currentUser = (await AxiosWrapper.get("http://50.19.124.30:8000/currentuser")).data;
       setUser(currentUser);
     };
     fetchUser();
@@ -141,7 +141,7 @@ export default function NavBar({
               onPress={() => {
                 Cookies.remove("accessToken");
                 // eslint-disable-next-line no-undef
-                window.location = "http://localhost:3000/";
+                window.location = "/";
               }}
             >
               Log Out

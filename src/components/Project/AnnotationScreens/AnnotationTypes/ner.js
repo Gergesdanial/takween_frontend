@@ -293,7 +293,7 @@ export default function NamedEntityRecognitionComponent({
 
                 const { _id } = currentRow.original;
                 await AxiosWrapper.post(
-                  `http://localhost:8000/projects/${projectId}/jobs/${jobId}/annotations`,
+                  `http://50.19.124.30:8000/projects/${projectId}/jobs/${jobId}/annotations`,
                   JSON.stringify({ _id, annotations: newAnnotations })
                 );
 

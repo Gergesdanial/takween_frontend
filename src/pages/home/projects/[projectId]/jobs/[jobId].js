@@ -239,7 +239,7 @@ export default function JobPage({
             <Button
               color="danger"
               onPress={async () => {
-                await AxiosWrapper.post(`http://localhost:8000/projects/${projectId}/jobs/${jobId}/annotations`, JSON.stringify({
+                await AxiosWrapper.post(`http://50.19.124.30:8000/projects/${projectId}/jobs/${jobId}/annotations`, JSON.stringify({
                   _id,
                   annotations: [],
                 }));
@@ -634,7 +634,7 @@ export default function JobPage({
                     variant="ghost"
                     onPress={async () => {
                       await AxiosWrapper.delete(`http://50.19.124.30:8000/projects/${projectId}/jobs/${jobId}`);
-                      window.location = `http://50.19.124.30:8000/home/projects/${projectId}`;
+                      window.location = `http://localhost:3000/home/projects/${projectId}`;
                     }}
                   >
                     Confirm

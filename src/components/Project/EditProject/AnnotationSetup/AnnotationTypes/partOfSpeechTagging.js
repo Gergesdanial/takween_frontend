@@ -44,7 +44,7 @@ export default function PartOfSpeechSetup({ onClose, projectId, language }) {
   useEffect(() => {
     const retrieveDataSources = async () => {
       setIsLoading(true);
-      const dataSourcesRes = await AxiosWrapper.get(`http://localhost:8000/projects/${projectId}/file-data-sources`);
+      const dataSourcesRes = await AxiosWrapper.get(`http://50.19.124.30:8000/${projectId}/file-data-sources`);
       setDataSources(dataSourcesRes.data);
       setIsLoading(false);
     };
@@ -259,10 +259,10 @@ export default function PartOfSpeechSetup({ onClose, projectId, language }) {
                 }
                 setAddedTagsErrorErrorState(false);
                 setIsLoading(true);
-                const createdJob = await AxiosWrapper.post(`http://localhost:8000/projects/${projectId}/jobs`, jobData);
+                const createdJob = await AxiosWrapper.post(`http://50.19.124.30:8000/projects/${projectId}/jobs`, jobData);
                 const jobId = createdJob.data.id;
                 // eslint-disable-next-line no-undef
-                window.location = `http://localhost:3000/home/projects/${projectId}/jobs/${jobId}`;
+                window.location = `http://50.19.124.30:8000/home/projects/${projectId}/jobs/${jobId}`;
               }}
             >
               Finish

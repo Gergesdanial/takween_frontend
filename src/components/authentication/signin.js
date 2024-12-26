@@ -93,7 +93,7 @@ export default function SignInComponent({ onClose }) {
                 const accessToken = res.data.access_token;
                 Cookies.set("accessToken", accessToken, { expires: 90 });
                 // eslint-disable-next-line no-undef
-                window.location = "http://localhost:3000/home/projects/";
+                window.location = "/home/projects";
               } catch (error) {
                 if (error.response.status === 404 || error.response.status === 400) {
                   setIsLoading(false);

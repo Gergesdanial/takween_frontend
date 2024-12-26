@@ -10,6 +10,7 @@ import DataCollectionIcon from "../../Icons/dataCollectionIcon";
 import ProjectsIcon from "../../Icons/projectIcon";
 import DataProcessing from "../../Icons/processingIcon";
 import VisualizeIcon from "../../Icons/VisualizeIcon";
+import AutomaticIcon from "../../Icons/AutomaticIcon"; // Added import for AutomaticIcon
 
 export default function SideBar({ drawerState, setDrawerState }) {
   return (
@@ -62,7 +63,7 @@ export default function SideBar({ drawerState, setDrawerState }) {
             </Link>
             <Link href="/home/automatic-annotation">
               <ListItemButton key="automaticAnnotation" disablePadding>
-                <AutomaticIcon /> {/* Use the AutomaticIcon component */}
+                <AutomaticIcon /> {/* AutomaticIcon is now imported */}
                 <ListItemText primary="Automatic Annotation" className="ml-3" />
               </ListItemButton>
             </Link>

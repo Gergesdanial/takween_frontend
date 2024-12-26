@@ -150,7 +150,7 @@ export default function ProjectDetailPage({
                     color="danger"
                     variant="ghost"
                     onPress={async () => {
-                      await AxiosWrapper.delete(`http://localhost:8000/projects/${projectId}`);
+                      await AxiosWrapper.delete(`http://50.19.124.30:8000/projects/${projectId}`);
                       window.location = "http://localhost:3000/home/projects";
                     }}
                   >
@@ -408,7 +408,7 @@ export async function getServerSideProps(context) {
       },
     };
   } catch (error) {
-    if (error.response.status === 401) {
+    if (error.response && error.response.status === 401) {
       return {
         redirect: {
           destination: "/",
@@ -416,9 +416,15 @@ export async function getServerSideProps(context) {
         },
       };
     }
+  
+    console.error("Error fetching project or jobs:", error.message);
+    return {
+      props: {
+        error: error.message || "An unexpected error occurred.",
+      },
+    };
   }
-  return null;
-}
+}  
 
 
 

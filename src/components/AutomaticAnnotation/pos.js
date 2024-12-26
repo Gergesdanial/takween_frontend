@@ -33,7 +33,7 @@ export default function POSAnnotation({ projects, user }) {
   // Fetch custom models if the checkbox is selected
   useEffect(() => {
     if (useCustomModel) {
-      AxiosWrapper.get("http://127.0.0.1:8000/list-user-models")
+      AxiosWrapper.get("http://50.19.124.30:8000/list-user-models")
         .then((response) => {
           const modelNames = response.data.models || [];
           setCustomModels(modelNames.map((name) => ({ id: name, name })));
@@ -71,12 +71,12 @@ export default function POSAnnotation({ projects, user }) {
       let response;
       if (useCustomModel) {
         response = await AxiosWrapper.post(
-          `http://127.0.0.1:8000/annotate-with-custom-pos-model/${selectedProject}/${selectedDataSource}/${selectedModel}`,
+          `http://50.19.124.30:8000/annotate-with-custom-pos-model/${selectedProject}/${selectedDataSource}/${selectedModel}`,
           payload
         );
       } else {
         response = await AxiosWrapper.post(
-          `http://127.0.0.1:8000/POS-annotate/${selectedProject}/${selectedDataSource}`,
+          `http://50.19.124.30:8000/POS-annotate/${selectedProject}/${selectedDataSource}`,
           payload
         );
       }
@@ -261,7 +261,7 @@ export async function getServerSideProps(context) {
 
   try {
     const projects = (
-      await AxiosWrapper.get("http://127.0.0.1:8000/projects", {
+      await AxiosWrapper.get("http://50.19.124.30:8000/projects", {
         accessToken: accessToken || ""
       })
     ).data;
@@ -269,12 +269,12 @@ export async function getServerSideProps(context) {
     const projectsWithUsersDataSources = await Promise.all(
       projects.map(async (project) => {
         const userCreatedProject = (
-          await AxiosWrapper.get(`http://127.0.0.1:8000/users/${project.created_by_id}`, {
+          await AxiosWrapper.get(`http://50.19.124.30:8000/users/${project.created_by_id}`, {
             accessToken: accessToken || ""
           })
         ).data;
         const fileDataSources = (
-          await AxiosWrapper.get(`http://127.0.0.1:8000/projects/${project.id}/file-data-sources`, {
+          await AxiosWrapper.get(`http://50.19.124.30:8000/projects/${project.id}/file-data-sources`, {
             accessToken: accessToken || ""
           })
         ).data;
@@ -283,7 +283,7 @@ export async function getServerSideProps(context) {
     );
 
     const user = (
-      await AxiosWrapper.get("http://127.0.0.1:8000/currentuser", {
+      await AxiosWrapper.get("http://50.19.124.30:8000/currentuser", {
         accessToken: accessToken || ""
       })
     ).data;
