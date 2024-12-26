@@ -34,7 +34,7 @@ export async function getServerSideProps(context) {
   const { accessToken } = cookieParse.parse(cookies);
 
   try {
-    const projects = (await AxiosWrapper.get("https://50.19.124.30:8000/projects", {
+    const projects = (await AxiosWrapper.get("https://50.19.124.30/projects", {
       accessToken: accessToken || "",
     })).data;
 
