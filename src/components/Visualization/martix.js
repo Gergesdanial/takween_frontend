@@ -20,7 +20,7 @@ export default function Matrix({ projects }) {
       setIsLoading(true);
       try {
         const response = await AxiosWrapper.get(
-          `http://50.19.124.30:8000/projects/${selectedProject}/jobs`
+          `https://50.19.124.30/projects/${selectedProject}/jobs`
         );
         setJobs(response.data.jobs || []);
       } catch (err) {
@@ -44,7 +44,7 @@ export default function Matrix({ projects }) {
     setIsLoading(true);
     try {
       const response = await AxiosWrapper.get(
-        `http://50.19.124.30:8000/projects/${selectedProject}/jobs/${selectedJob}/matrix-data`
+        `https://50.19.124.30/projects/${selectedProject}/jobs/${selectedJob}/matrix-data`
       );
       setMatrixData(response.data.matrixData || {});
     } catch (err) {

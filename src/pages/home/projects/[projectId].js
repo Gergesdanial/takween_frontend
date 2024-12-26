@@ -150,7 +150,7 @@ export default function ProjectDetailPage({
                     color="danger"
                     variant="ghost"
                     onPress={async () => {
-                      await AxiosWrapper.delete(`http://50.19.124.30:8000/projects/${projectId}`);
+                      await AxiosWrapper.delete(`https://50.19.124.30/projects/${projectId}`);
                       window.location = "http://localhost:3000/home/projects";
                     }}
                   >
@@ -372,21 +372,21 @@ export async function getServerSideProps(context) {
   const { accessToken } = cookieParse.parse(cookies);
 
   try {
-    const project = (await AxiosWrapper.get(`http://50.19.124.30:8000/projects/${projectId}`, {
+    const project = (await AxiosWrapper.get(`https://50.19.124.30/projects/${projectId}`, {
       accessToken: accessToken || "",
     })).data;
-    const jobs = (await AxiosWrapper.get(`http://50.19.124.30:8000/projects/${projectId}/jobs`, {
+    const jobs = (await AxiosWrapper.get(`https://50.19.124.30/projects/${projectId}/jobs`, {
       accessToken: accessToken || "",
     })).data;
 
     // Fetch detailed information for each job
     const jobsWithUsers = await Promise.all(jobs.jobs.map(async (job) => {
-      const userCreatedJob = (await AxiosWrapper.get(`http://50.19.124.30:8000/users/${job.created_by_id}`, {
+      const userCreatedJob = (await AxiosWrapper.get(`https://50.19.124.30/users/${job.created_by_id}`, {
         accessToken: accessToken || "",
       })).data;
 
       // Fetch finishedAnnotations and totalRowCount for each job
-      const jobDetails = (await AxiosWrapper.get(`http://50.19.124.30:8000/projects/${projectId}/jobs/${job.id}/annotations/summary`, {
+      const jobDetails = (await AxiosWrapper.get(`https://50.19.124.30/projects/${projectId}/jobs/${job.id}/annotations/summary`, {
         accessToken: accessToken || "",
       })).data;
 
@@ -398,7 +398,7 @@ export async function getServerSideProps(context) {
       };
     }));
 
-    const user = (await AxiosWrapper.get("http://50.19.124.30:8000/currentuser", {
+    const user = (await AxiosWrapper.get("https://50.19.124.30/currentuser", {
       accessToken: accessToken || "",
     })).data;
 

@@ -52,7 +52,7 @@ export default function CodeEditorComponent() {
 
     try {
       const response = await AxiosWrapper.post(
-        "http://127.0.0.1:8000/upload-custom-ner-model-code",
+        "https://50.19.124.30/upload-custom-ner-model-code",
         {
           model_name: modelName,
           model_code: code,
@@ -80,7 +80,7 @@ export default function CodeEditorComponent() {
 
     try {
       const response = await AxiosWrapper.post(
-        "http://127.0.0.1:8000/upload-file",
+        "https://50.19.124.30/upload-file",
         formData,
         {
           headers: {

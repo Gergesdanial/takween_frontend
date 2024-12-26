@@ -47,7 +47,7 @@ export default function OpenAIAnnotation({ projects, user }) {
       };
 
       const response = await AxiosWrapper.post(
-        `http://50.19.124.30:8000/openai-annotate/${selectedProject}/${selectedDataSource}`,
+        `https://50.19.124.30/openai-annotate/${selectedProject}/${selectedDataSource}`,
         payload
       );
 

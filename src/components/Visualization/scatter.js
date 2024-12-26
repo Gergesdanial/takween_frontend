@@ -21,7 +21,7 @@ export default function Scatter({ projects }) {
       setIsLoading(true);
       try {
         const response = await AxiosWrapper.get(
-          `http://50.19.124.30:8000/projects/${selectedProject}/jobs`
+          `https://50.19.124.30/projects/${selectedProject}/jobs`
         );
         setJobs(response.data.jobs || []);
       } catch (err) {
@@ -45,7 +45,7 @@ export default function Scatter({ projects }) {
     setIsLoading(true);
     try {
       const response = await AxiosWrapper.get(
-        `http://50.19.124.30:8000/projects/${selectedProject}/jobs/${selectedJob}/scatter-data`
+        `https://50.19.124.30/projects/${selectedProject}/jobs/${selectedJob}/scatter-data`
       );
       setScatterData(response.data.scatterData || []);
     } catch (err) {

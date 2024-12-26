@@ -26,7 +26,7 @@ export default function AddDataComponent({
   useEffect(() => {
     const fetchDataSources = async () => {
       setIsLoading(true);
-      const dataSources = (await AxiosWrapper.get(`http://50.19.124.30:8000/projects/${projectId}/file-data-sources`)).data;
+      const dataSources = (await AxiosWrapper.get(`https://50.19.124.30/projects/${projectId}/file-data-sources`)).data;
       setSelectedFiles(dataSources.map((ds) => ({
         id: ds.id,
         name: ds.file_name,
@@ -48,7 +48,7 @@ export default function AddDataComponent({
         const formData = new FormData();
         formData.append("files", e.target.files[0]);
 
-        const response = await AxiosWrapper.post(`http://50.19.124.30:8000/projects/${projectId}/file-data-sources`, formData, {
+        const response = await AxiosWrapper.post(`https://50.19.124.30/projects/${projectId}/file-data-sources`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -78,7 +78,7 @@ export default function AddDataComponent({
   const handleDownload = async (dsId) => {
     setIsLoading(true);
     try {
-      const response = (await AxiosWrapper.get(`http://50.19.124.30:8000/projects/${projectId}/file-data-sources/${dsId}`, {
+      const response = (await AxiosWrapper.get(`https://50.19.124.30/projects/${projectId}/file-data-sources/${dsId}`, {
         responseType: "blob",
       }));
 

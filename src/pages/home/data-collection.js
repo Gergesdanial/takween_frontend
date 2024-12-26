@@ -220,18 +220,18 @@ export async function getServerSideProps(context) {
   const { accessToken } = cookieParse.parse(cookies);
 
   try {
-    const projects = (await AxiosWrapper.get("http://50.19.124.30:8000/projects", {
+    const projects = (await AxiosWrapper.get("https://50.19.124.30/projects", {
       accessToken: accessToken || "",
     })).data;
 
     const projectsWithUsers = await Promise.all(projects.map(async (project) => {
-      const userCreatedProject = (await AxiosWrapper.get(`http://50.19.124.30:8000/users/${project.created_by_id}`, {
+      const userCreatedProject = (await AxiosWrapper.get(`https://50.19.124.30/users/${project.created_by_id}`, {
         accessToken: accessToken || "",
       })).data;
       return { ...project, user: userCreatedProject };
     }));
 
-    const user = (await AxiosWrapper.get("http://50.19.124.30:8000/currentuser", {
+    const user = (await AxiosWrapper.get("https://50.19.124.30/currentuser", {
       accessToken: accessToken || "",
     })).data;
 

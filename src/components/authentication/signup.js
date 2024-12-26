@@ -146,7 +146,7 @@ export default function SignUpComponent({ onClose }) {
               setIsLoading(true);
               try {
                 const res = await AxiosWrapper.post(
-                  "http://50.19.124.30:8000/signup",
+                  "https://50.19.124.30/signup",
                   signUpData,
                 );
                 setUserAlreadyExists(false);

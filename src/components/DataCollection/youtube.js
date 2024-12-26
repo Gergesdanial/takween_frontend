@@ -226,7 +226,7 @@ export default function YoutubeDataCollection(
               setIsLoading(true);
               try {
                 await AxiosWrapper.post(
-                  "http://50.19.124.30:8000/data-collection",
+                  "https://50.19.124.30/data-collection",
                   jobData,
                 );
               } catch (err) {

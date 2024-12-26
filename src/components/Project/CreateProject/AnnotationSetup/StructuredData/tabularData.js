@@ -163,7 +163,7 @@ export default function AnnotationFieldSelection({
 
             formData.append("data", JSON.stringify(finishedProjectObject));
 
-            const response = await AxiosWrapper.post("http://50.19.124.30:8000/projects", formData, {
+            const response = await AxiosWrapper.post("https://50.19.124.30/projects", formData, {
               headers: {
                 "Content-Type": "multipart/form-data",
               },

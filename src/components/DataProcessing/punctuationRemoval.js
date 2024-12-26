@@ -157,7 +157,7 @@ export default function PunctuationRemoval({
               setIsLoading(true);
               try {
                 await AxiosWrapper.post(
-                  "http://50.19.124.30:8000/data-processing",
+                  "hhttps://50.19.124.30/data-processing",
                   jobData,
                 );
               } catch (err) {

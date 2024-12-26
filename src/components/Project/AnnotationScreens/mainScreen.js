@@ -31,7 +31,7 @@ export default function MainAnnotationScreen({
   const getNextRow = async () => {
     const nextRowId = Number(currentRow.id) + 1;
     if (data.allRows[nextRowId]) {
-      const itemRes = await AxiosWrapper.get(`http://50.19.124.30:8000/projects/${projectId}/jobs/${jobId}/annotations/${data.allRows[nextRowId].original._id}`);
+      const itemRes = await AxiosWrapper.get(`https://50.19.124.30/projects/${projectId}/jobs/${jobId}/annotations/${data.allRows[nextRowId].original._id}`);
       const item = itemRes.data;
       setSelectedAnnotations(getInitialAnnotations(item.annotations));
       setCurrentRow({
@@ -47,7 +47,7 @@ export default function MainAnnotationScreen({
   const getPreviousRow = async () => {
     const nextRowId = Number(currentRow.id) - 1;
     if (data.allRows[nextRowId]) {
-      const itemRes = await AxiosWrapper.get(`http://50.19.124.30:8000/projects/${projectId}/jobs/${jobId}/annotations/${data.allRows[nextRowId].original._id}`);
+      const itemRes = await AxiosWrapper.get(`https://50.19.124.30/projects/${projectId}/jobs/${jobId}/annotations/${data.allRows[nextRowId].original._id}`);
       const item = itemRes.data;
       setSelectedAnnotations(getInitialAnnotations(item.annotations));
       setCurrentRow({

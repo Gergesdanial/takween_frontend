@@ -22,7 +22,7 @@ export default function NavBar({
 
   useEffect(() => {
     const fetchUser = async () => {
-      const currentUser = (await AxiosWrapper.get("http://50.19.124.30:8000/currentuser")).data;
+      const currentUser = (await AxiosWrapper.get("https://50.19.124.30/currentuser")).data;
       setUser(currentUser);
     };
     fetchUser();

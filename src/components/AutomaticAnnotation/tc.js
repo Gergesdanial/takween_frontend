@@ -20,7 +20,7 @@ export default function TCAnnotation({ projects, user }) {
   // Fetch custom models only if custom models checkbox is checked
   useEffect(() => {
     if (useCustomModel) {
-      AxiosWrapper.get('http://50.19.124.30:8000/list-user-models')
+      AxiosWrapper.get('https://50.19.124.30/list-user-models')
         .then(response => {
           const modelNames = response.data.models || [];
           setCustomModels(modelNames.map(name => ({ id: name, name })));
@@ -58,12 +58,12 @@ export default function TCAnnotation({ projects, user }) {
       let response;
       if (useCustomModel) {
         response = await AxiosWrapper.post(
-          `http://50.19.124.30:8000/annotate-with-custom-tc-model/${selectedProject}/${selectedDataSource}/${selectedModel}`,
+          `https://50.19.124.30/annotate-with-custom-tc-model/${selectedProject}/${selectedDataSource}/${selectedModel}`,
           { job_title: jobTitle, classes }
         );
       } else {
         response = await AxiosWrapper.post(
-          `http://50.19.124.30:8000/text-classification/${selectedProject}/${selectedDataSource}`,
+          `https://50.19.124.30/text-classification/${selectedProject}/${selectedDataSource}`,
           { job_title: jobTitle, classes }
         );
       }
