@@ -86,7 +86,7 @@ export default function SignInComponent({ onClose }) {
 
               try {
                 const res = await AxiosWrapper.post(
-                  "https://50.19.124.30/signin",
+                  "http://50.19.124.30/signin",
                   signInData,
                 );
                 setWrongInfoError(false);
