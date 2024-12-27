@@ -122,7 +122,7 @@ export default function Flattening({
               setIsLoading(true);
               try {
                 await AxiosWrapper.post(
-                  "https://50.19.124.30/data-processing",
+                  "https://takween.ddns.net/data-processing",
                   jobData,
                 );
               } catch (err) {

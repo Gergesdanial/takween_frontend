@@ -21,7 +21,7 @@ export default function Scatter({ projects }) {
       setIsLoading(true);
       try {
         const response = await AxiosWrapper.get(
-          `https://50.19.124.30/projects/${selectedProject}/jobs`
+          `https://takween.ddns.net/projects/${selectedProject}/jobs`
         );
         setJobs(response.data.jobs || []);
       } catch (err) {
@@ -45,7 +45,7 @@ export default function Scatter({ projects }) {
     setIsLoading(true);
     try {
       const response = await AxiosWrapper.get(
-        `https://50.19.124.30/projects/${selectedProject}/jobs/${selectedJob}/scatter-data`
+        `https://takween.ddns.net/projects/${selectedProject}/jobs/${selectedJob}/scatter-data`
       );
       setScatterData(response.data.scatterData || []);
     } catch (err) {

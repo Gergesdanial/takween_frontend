@@ -50,7 +50,7 @@ export default function Ocr(
 
         formData.append("files", files.map((f) => f.file)[0]);
 
-        await AxiosWrapper.post(`https://50.19.124.30/projects/${jobData.projectId}/file-data-sources/ocr`, formData, {
+        await AxiosWrapper.post(`https://takween.ddns.net/projects/${jobData.projectId}/file-data-sources/ocr`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

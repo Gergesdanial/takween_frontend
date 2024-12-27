@@ -58,7 +58,7 @@ export default function NewProjectInfoComponent({
             } else if (project.description && project.description.length >= 2000) {
               setError({ ...error, description: "Description too long, stick to a maximum of 400 characters" });
             } else {
-              const response = await AxiosWrapper.post("https://50.19.124.30/projects", project);
+              const response = await AxiosWrapper.post("https://takween.ddns.net/projects", project);
               const projectID = response.data.data.project.id;
               // eslint-disable-next-line no-undef
               window.location = `${window.location.href}/${projectID}`;

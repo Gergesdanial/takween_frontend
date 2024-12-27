@@ -40,7 +40,7 @@ export default function ManageUsersComponent({ onClose, projectId, projectCreate
   useEffect(() => {
     const fetchUsers = async () => {
       setIsLoading(true);
-      let allUsers = (await AxiosWrapper.get(`https://50.19.124.30/projects/${projectId}/users`)).data;
+      let allUsers = (await AxiosWrapper.get(`https://takween.ddns.net/projects/${projectId}/users`)).data;
       allUsers = allUsers.map((user) => ({
         id: user.id,
         name: `${user.first_name} ${user.last_name}`,
@@ -100,7 +100,7 @@ export default function ManageUsersComponent({ onClose, projectId, projectCreate
             isSelected={user.isMember}
             isDisabled={user.id === projectCreatedById}
             onValueChange={async (value) => {
-              (await AxiosWrapper.patch(`https://50.19.124.30/users/${user.id}`, {
+              (await AxiosWrapper.patch(`https://takween.ddns.net/users/${user.id}`, {
                 projectId,
                 isMember: value,
               }));
@@ -118,7 +118,7 @@ export default function ManageUsersComponent({ onClose, projectId, projectCreate
             isDisabled={user.id === projectCreatedById}
             onValueChange={async (value) => {
               if (user.isMember) {
-                (await AxiosWrapper.patch(`https://50.19.124.30/users/${user.id}`, { addData: value }));
+                (await AxiosWrapper.patch(`https://takween.ddns.net/users/${user.id}`, { addData: value }));
                 const random = Math.random();
 
                 setRefresh(`${user.id}-${random}`);
@@ -134,7 +134,7 @@ export default function ManageUsersComponent({ onClose, projectId, projectCreate
             isSelected={user.createJobs}
             onValueChange={async (value) => {
               if (user.isMember) {
-                (await AxiosWrapper.patch(`https://50.19.124.30/users/${user.id}`, { createJobs: value }));
+                (await AxiosWrapper.patch(`https://takween.ddns.net/users/${user.id}`, { createJobs: value }));
                 const random = Math.random();
 
                 setRefresh(`${user.id}-${random}`);

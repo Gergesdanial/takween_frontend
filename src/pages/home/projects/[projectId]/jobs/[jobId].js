@@ -91,7 +91,7 @@ export default function JobPage({
     const fetchData = async () => {
       setIsLoading(true);
   
-      const nextAnnotationData = (await AxiosWrapper.get(`https://50.19.124.30/projects/${projectId}/jobs/${jobId}/annotations?page=${pagination.pageIndex}&itemsPerPage=${pagination.pageSize}&onlyShowUnanotatedData=${onlyShowUnanotatedData}`)).data;
+      const nextAnnotationData = (await AxiosWrapper.get(`https://takween.ddns.net/projects/${projectId}/jobs/${jobId}/annotations?page=${pagination.pageIndex}&itemsPerPage=${pagination.pageSize}&onlyShowUnanotatedData=${onlyShowUnanotatedData}`)).data;
   
       setStatistics(nextAnnotationData.stats);
   
@@ -218,7 +218,7 @@ export default function JobPage({
             <Button
               color="success"
               onPress={async () => {
-                await AxiosWrapper.post(`https://50.19.124.30/projects/${projectId}/jobs/${jobId}/annotations`, JSON.stringify({
+                await AxiosWrapper.post(`https://takween.ddns.net/projects/${projectId}/jobs/${jobId}/annotations`, JSON.stringify({
                   _id,
                   wasReviewed: true,
                 }));
@@ -239,7 +239,7 @@ export default function JobPage({
             <Button
               color="danger"
               onPress={async () => {
-                await AxiosWrapper.post(`https://50.19.124.30/projects/${projectId}/jobs/${jobId}/annotations`, JSON.stringify({
+                await AxiosWrapper.post(`https://takween.ddns.net/projects/${projectId}/jobs/${jobId}/annotations`, JSON.stringify({
                   _id,
                   annotations: [],
                 }));
@@ -304,11 +304,11 @@ export default function JobPage({
     try {
       let response;
       if (merge) {
-        response = await AxiosWrapper.get(`https://50.19.124.30/projects/${projectId}/jobs/${jobId}/annotations/merge/export?type=${type}`, {
+        response = await AxiosWrapper.get(`https://takween.ddns.net/projects/${projectId}/jobs/${jobId}/annotations/merge/export?type=${type}`, {
           responseType: "blob",
         });
       } else {
-        response = await AxiosWrapper.get(`https://50.19.124.30/projects/${projectId}/jobs/${jobId}/annotations/export?type=${type}`, {
+        response = await AxiosWrapper.get(`https://takween.ddns.net/projects/${projectId}/jobs/${jobId}/annotations/export?type=${type}`, {
           responseType: "blob",
         });
       }
@@ -486,11 +486,11 @@ export default function JobPage({
     variant="flat"
     onPress={async () => {
       const _id = currentItemCloserLookUserAnnot[0];
-      await AxiosWrapper.post(`https://50.19.124.30/projects/${projectId}/jobs/${jobId}/annotations`, JSON.stringify({
+      await AxiosWrapper.post(`https://takween.ddns.net/projects/${projectId}/jobs/${jobId}/annotations`, JSON.stringify({
         _id,
         annotations: [currentItemCloserLookUserAnnot[2]],
       }));
-      await AxiosWrapper.post(`https://50.19.124.30/projects/${projectId}/jobs/${jobId}/annotations`, JSON.stringify({
+      await AxiosWrapper.post(`https://takween.ddns.net/projects/${projectId}/jobs/${jobId}/annotations`, JSON.stringify({
         _id,
         wasReviewed: true,
       }));
@@ -633,8 +633,8 @@ export default function JobPage({
                     color="danger"
                     variant="ghost"
                     onPress={async () => {
-                      await AxiosWrapper.delete(`https://50.19.124.30/projects/${projectId}/jobs/${jobId}`);
-                      window.location = `http://localhost:3000/home/projects/${projectId}`;
+                      await AxiosWrapper.delete(`https://takween.ddns.net/projects/${projectId}/jobs/${jobId}`);
+                      window.location = `/home/projects/${projectId}`;
                     }}
                   >
                     Confirm
@@ -707,7 +707,7 @@ export default function JobPage({
           <DropdownItem
             onClick={async () => {
               setIsLoading(true);
-              const vizData = (await AxiosWrapper.get(`https://50.19.124.30/projects/${projectId}/jobs/${jobId}/visualization`)).data;
+              const vizData = (await AxiosWrapper.get(`https://takween.ddns.net/projects/${projectId}/jobs/${jobId}/visualization`)).data;
               setVisualizationData(vizData);
               setIsLoading(false);
               onOpenVisualization();
@@ -874,15 +874,15 @@ export async function getServerSideProps(context) {
   const { accessToken } = cookieParse.parse(cookies);
 
   try {
-    const project = (await AxiosWrapper.get(`https://50.19.124.30/projects/${projectId}`, {
+    const project = (await AxiosWrapper.get(`https://takween.ddns.net/projects/${projectId}`, {
       accessToken: accessToken || "",
     })).data;
 
-    const job = (await AxiosWrapper.get(`https://50.19.124.30/projects/${projectId}/jobs/${jobId}`, {
+    const job = (await AxiosWrapper.get(`https://takween.ddns.net/projects/${projectId}/jobs/${jobId}`, {
       accessToken: accessToken || "",
     })).data;
 
-    const firstAnnotationDataBatch = (await AxiosWrapper.get(`https://50.19.124.30/projects/${projectId}/jobs/${jobId}/annotations?page=${0}&itemsPerPage=${10}&onlyShowUnanotatedData=${true}`, {
+    const firstAnnotationDataBatch = (await AxiosWrapper.get(`https://takween.ddns.net/projects/${projectId}/jobs/${jobId}/annotations?page=${0}&itemsPerPage=${10}&onlyShowUnanotatedData=${true}`, {
       accessToken: accessToken || "",
     })).data;
 
@@ -890,7 +890,7 @@ export async function getServerSideProps(context) {
 
     const { stats } = firstAnnotationDataBatch;
 
-    const user = (await AxiosWrapper.get("https://50.19.124.30/currentuser", {
+    const user = (await AxiosWrapper.get("https://takween.ddns.net/currentuser", {
       accessToken: accessToken || "",
     })).data;
 

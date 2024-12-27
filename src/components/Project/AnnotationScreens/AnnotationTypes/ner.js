@@ -293,7 +293,7 @@ export default function NamedEntityRecognitionComponent({
 
                 const { _id } = currentRow.original;
                 await AxiosWrapper.post(
-                  `https://50.19.124.30/projects/${projectId}/jobs/${jobId}/annotations`,
+                  `https://takween.ddns.net/projects/${projectId}/jobs/${jobId}/annotations`,
                   JSON.stringify({ _id, annotations: newAnnotations })
                 );
 

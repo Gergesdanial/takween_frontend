@@ -41,7 +41,7 @@ export default function AnnotatorEditComponent({
   useEffect(() => {
     const fetchUsers = async () => {
       setIsLoading(true);
-      let allUsers = (await AxiosWrapper.get(`https://50.19.124.30/projects/${projectId}/jobs/${jobId}/users`)).data;
+      let allUsers = (await AxiosWrapper.get(`https://takween.ddns.net/projects/${projectId}/jobs/${jobId}/users`)).data;
       allUsers = allUsers.map((user) => ({
         id: user.id,
         name: `${user.first_name} ${user.last_name}`,
@@ -100,7 +100,7 @@ export default function AnnotatorEditComponent({
             onChange={(e) => { e.preventDefault(); }}
             isSelected={user.isAnnotator}
             onValueChange={async (value) => {
-              (await AxiosWrapper.patch(`https://50.19.124.30/users/${user.id}`, {
+              (await AxiosWrapper.patch(`https://takween.ddns.net/users/${user.id}`, {
                 projectId,
                 jobId,
                 isAnnotator: value,
@@ -117,7 +117,7 @@ export default function AnnotatorEditComponent({
             onChange={(e) => { e.preventDefault(); }}
             isSelected={user.isReviewer}
             onValueChange={async (value) => {
-              (await AxiosWrapper.patch(`https://50.19.124.30/users/${user.id}`, {
+              (await AxiosWrapper.patch(`https://takween.ddns.net/users/${user.id}`, {
                 projectId,
                 jobId,
                 isReviewer: value,

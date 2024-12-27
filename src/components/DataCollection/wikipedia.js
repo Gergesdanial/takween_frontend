@@ -138,7 +138,7 @@ export default function WikipediaDataCollection(
               setIsLoading(true);
               try {
                 await AxiosWrapper.post(
-                  "https://50.19.124.30/data-collection",
+                  "https://takween.ddns.net/data-collection",
                   jobData,
                 );
               } catch (err) {

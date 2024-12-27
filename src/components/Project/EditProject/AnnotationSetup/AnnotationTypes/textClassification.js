@@ -38,7 +38,7 @@ export default function TextClassificationSetup({
   useEffect(() => {
     const retrieveDataSources = async () => {
       setIsLoading(true);
-      const dataSourcesRes = await AxiosWrapper.get(`https://50.19.124.30/projects/${projectId}/file-data-sources`);
+      const dataSourcesRes = await AxiosWrapper.get(`https://takween.ddns.net/projects/${projectId}/file-data-sources`);
       setDataSources(dataSourcesRes.data);
       setIsLoading(false);
     };
@@ -261,10 +261,10 @@ export default function TextClassificationSetup({
                 }
                 setAddedClassesErrorErrorState(false);
                 setIsLoading(true);
-                const createdJob = await AxiosWrapper.post(`https://50.19.124.30/projects/${projectId}/jobs`, jobData);
+                const createdJob = await AxiosWrapper.post(`https://takween.ddns.net/projects/${projectId}/jobs`, jobData);
                 const jobId = createdJob.data.id;
                 // eslint-disable-next-line no-undef
-                window.location = `https://50.19.124.30/home/projects/${projectId}/jobs/${jobId}`;
+                window.location = `https://takween.ddns.net/home/projects/${projectId}/jobs/${jobId}`;
               }}
             >
               Finish

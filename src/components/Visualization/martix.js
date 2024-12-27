@@ -20,7 +20,7 @@ export default function Matrix({ projects }) {
       setIsLoading(true);
       try {
         const response = await AxiosWrapper.get(
-          `https://50.19.124.30/projects/${selectedProject}/jobs`
+          `https://takween.ddns.net/projects/${selectedProject}/jobs`
         );
         setJobs(response.data.jobs || []);
       } catch (err) {
@@ -44,7 +44,7 @@ export default function Matrix({ projects }) {
     setIsLoading(true);
     try {
       const response = await AxiosWrapper.get(
-        `https://50.19.124.30/projects/${selectedProject}/jobs/${selectedJob}/matrix-data`
+        `https://takween.ddns.net/projects/${selectedProject}/jobs/${selectedJob}/matrix-data`
       );
       setMatrixData(response.data.matrixData || {});
     } catch (err) {

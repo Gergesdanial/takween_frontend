@@ -52,7 +52,7 @@ export default function CodeEditorComponent() {
 
     try {
       const response = await AxiosWrapper.post(
-        "https://50.19.124.30/upload-custom-ner-model-code",
+        "https://takween.ddns.net/upload-custom-ner-model-code",
         {
           model_name: modelName,
           model_code: code,
@@ -80,7 +80,7 @@ export default function CodeEditorComponent() {
 
     try {
       const response = await AxiosWrapper.post(
-        "https://50.19.124.30/upload-file",
+        "https://takween.ddns.net/upload-file",
         formData,
         {
           headers: {
