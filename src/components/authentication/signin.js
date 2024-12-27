@@ -86,7 +86,8 @@ export default function SignInComponent({ onClose }) {
 
               try {
                 const res = await AxiosWrapper.post(
-                  "/api/signin"
+                  "/api/signin",
+                  signInData,
                 );
                 setWrongInfoError(false);
                 const accessToken = res.data.access_token;
