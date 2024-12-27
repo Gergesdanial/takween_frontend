@@ -86,7 +86,7 @@ export default function SignInComponent({ onClose }) {
 
               try {
                 const res = await AxiosWrapper.post(
-                  "/api/signin",
+                  "https://takween.ddns.net/signin",
                   signInData,
                 );
                 setWrongInfoError(false);
