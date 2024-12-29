@@ -45,6 +45,8 @@
     "react-charts": "^3.0.0-beta.57",
     "react-codemirror2": "^8.0.0",
     "react-dom": "^18.3.1",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
     "react-filepond": "^7.1.2",
     "react-heatmap-grid": "^0.9.1",
     "react-split-pane-v2": "^1.0.3",
