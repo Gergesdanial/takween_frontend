@@ -1,11 +1,19 @@
 import { useState } from "react";
-import { useDisclosure, Modal, ModalBody, ModalContent, Card, CardFooter, Button } from "@nextui-org/react";
+import {
+  useDisclosure,
+  Modal,
+  ModalBody,
+  ModalContent,
+  Card,
+  CardFooter,
+  Button,
+} from "@nextui-org/react";
 import Image from "next/image";
 import Navigation from "../../components/Reusable/Navigation/navBarSideBar";
 import Histogram from "../../components/Visualization/histogram";
 import Heatmap from "../../components/Visualization/heatmap";
 import Matrix from "../../components/Visualization/martix";
-import Scatter from "../../components/Visualization/scatter";  // Import Scatter component
+import Scatter from "../../components/Visualization/scatter";
 import AxiosWrapper from "../../utils/axiosWrapper";
 import cookieParse from "cookie-parse";
 
@@ -37,13 +45,28 @@ export default function Visualization({ projects, user }) {
         <ModalContent>
           <div className="modal-header">
             <h2 className="text-xl font-semibold">Visualization Tool</h2>
-            <Button auto light onPress={onOpenChange} className="close-button">✕</Button>
+            <Button
+              auto
+              light
+              onPress={onOpenChange}
+              className="close-button"
+            >
+              ✕
+            </Button>
           </div>
           <ModalBody>
-            {modalComponent === "histogram" && <Histogram projects={projects} user={user} />}
-            {modalComponent === "heatmap" && <Heatmap projects={projects} user={user} />}
-            {modalComponent === "matrix" && <Matrix projects={projects} user={user} />}
-            {modalComponent === "scatter" && <Scatter projects={projects} user={user} />}  {/* Scatter component */}
+            {modalComponent === "histogram" && (
+              <Histogram projects={projects} user={user} />
+            )}
+            {modalComponent === "heatmap" && (
+              <Heatmap projects={projects} user={user} />
+            )}
+            {modalComponent === "matrix" && (
+              <Matrix projects={projects} user={user} />
+            )}
+            {modalComponent === "scatter" && (
+              <Scatter projects={projects} user={user} />
+            )}
           </ModalBody>
         </ModalContent>
       </Modal>
@@ -53,7 +76,7 @@ export default function Visualization({ projects, user }) {
           { type: "histogram", title: "Histogram", image: "/images/histogram.svg" },
           { type: "heatmap", title: "Heatmap", image: "/images/heatmap.svg" },
           { type: "matrix", title: "Entity Co-occurrence Matrix", image: "/images/matrix.svg" },
-          { type: "scatter", title: "Scatter-Plot", image: "/images/scatter.svg" },  // Scatter button
+          { type: "scatter", title: "Scatter-Plot", image: "/images/scatter.svg" },
         ].map((item, idx) => (
           <Card
             key={idx}
@@ -76,6 +99,27 @@ export default function Visualization({ projects, user }) {
             </CardFooter>
           </Card>
         ))}
+
+        {/* Visualization Dashboard Button */}
+        <Card
+          isFooterBlurred
+          radius="lg"
+          isPressable
+          onPress={() => (window.location.href = "/home/dashVisualization")}
+          className="hover:shadow-md transition-shadow duration-200 border border-gray-200 rounded-lg"
+          css={{ maxWidth: "200px" }}
+        >
+          <Image
+            alt="Visualization Dashboard"
+            className="object-cover rounded-t-lg"
+            height={140}
+            src="/images/dashboard.svg"
+            width={200}
+          />
+          <CardFooter className="py-1.5">
+            <p className="text-center text-sm font-medium">Visualization Dashboard</p>
+          </CardFooter>
+        </Card>
       </div>
 
       <style jsx>{`
@@ -107,23 +151,39 @@ export async function getServerSideProps(context) {
   const { accessToken } = cookieParse.parse(cookies);
 
   try {
-    const projects = (await AxiosWrapper.get("https://takween.ddns.net/projects", {
-      accessToken: accessToken || "",
-    })).data;
-
-    const projectsWithUsersDataSources = await Promise.all(projects.map(async (project) => {
-      const userCreatedProject = (await AxiosWrapper.get(`https://takween.ddns.net/users/${project.created_by_id}`, {
+    const projects = (
+      await AxiosWrapper.get("https://takween.ddns.net/projects", {
         accessToken: accessToken || "",
-      })).data;
-      const fileDataSources = (await AxiosWrapper.get(`https://takween.ddns.net/projects/${project.id}/file-data-sources`, {
-        accessToken: accessToken || "",
-      })).data;
-      return { ...project, user: userCreatedProject, dataSources: fileDataSources };
-    }));
+      })
+    ).data;
 
-    const user = (await AxiosWrapper.get("https://takween.ddns.net/currentuser", {
-      accessToken: accessToken || "",
-    })).data;
+    const projectsWithUsersDataSources = await Promise.all(
+      projects.map(async (project) => {
+        const userCreatedProject = (
+          await AxiosWrapper.get(
+            `https://takween.ddns.net/users/${project.created_by_id}`,
+            {
+              accessToken: accessToken || "",
+            }
+          )
+        ).data;
+        const fileDataSources = (
+          await AxiosWrapper.get(
+            `https://takween.ddns.net/${project.id}/file-data-sources`,
+            {
+              accessToken: accessToken || "",
+            }
+          )
+        ).data;
+        return { ...project, user: userCreatedProject, dataSources: fileDataSources };
+      })
+    );
+
+    const user = (
+      await AxiosWrapper.get("https://takween.ddns.net/currentuser", {
+        accessToken: accessToken || "",
+      })
+    ).data;
 
     return { props: { projects: projectsWithUsersDataSources, user } };
   } catch (error) {

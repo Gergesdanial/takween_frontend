@@ -1,0 +1,284 @@
+/* General Container Styling */
+.container {
+    font-family: 'Roboto', Arial, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9fbfd; /* Subtle background for contrast */
+    color: #333;
+}
+
+/* Header Section */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1d3557; /* Rich blue for a professional tone */
+    margin-bottom: 10px;
+}
+
+.header p {
+    font-size: 18px;
+    font-weight: 400;
+    color: #5c677d; /* Muted gray-blue for secondary text */
+}
+
+/* File Upload Section */
+.fileUpload {
+    background-color: #ffffff;
+    border: 1px solid #dfe6ed;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 30px;
+    text-align: center;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fileUpload:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.fileUpload h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1d3557;
+}
+
+.fileUpload input[type="file"] {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #dfe6ed;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Workspace Section */
+.workspace {
+    display: flex;
+    gap: 20px;
+}
+
+/* Columns Panel */
+.columnsPanel {
+    flex: 1;
+    background-color: #ffffff;
+    border: 1px solid #dfe6ed;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    max-height: 500px; /* Adjust the height as needed */
+    overflow-y: auto; /* Enables vertical scrolling */
+}
+
+.columnsPanel h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1d3557;
+    margin-bottom: 15px;
+}
+
+/* Chart Builder */
+.chartBuilder {
+    flex: 2;
+    background-color: #ffffff;
+    border: 1px solid #dfe6ed;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.chartBuilder h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1d3557;
+    margin-bottom: 20px;
+}
+
+/* Drop Zones */
+.dropZones {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.dropZone {
+    border: 2px dashed #457b9d; /* Modern color */
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+    background-color: #e8f0fc; /* Lighter background for focus */
+    font-size: 15px;
+    color: #1d3557;
+    font-weight: 500;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.dropZoneActive {
+    background-color: #d8ebfc; /* Slightly darker when active */
+    border-color: #1d3557;
+}
+
+/* Chart Type Selector */
+.chartTypeSelector {
+    margin-bottom: 25px;
+}
+
+.chartTypeSelector label {
+    font-size: 14px;
+    color: #5c677d;
+    font-weight: 500;
+}
+
+.chartTypeSelector select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #dfe6ed;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    margin-top: 8px;
+}
+
+/* Buttons */
+.buttons button {
+    padding: 12px 25px;
+    margin: 10px 8px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.generateButton {
+    background-color: #1d3557;
+    color: white;
+}
+
+.generateButton:hover {
+    background-color: #12324a;
+    transform: translateY(-2px);
+}
+
+.explainButton {
+    background-color: #2a9d8f;
+    color: white;
+}
+
+.explainButton:hover {
+    background-color: #207a6e;
+    transform: translateY(-2px);
+}
+
+/* Chart Section */
+.chart, .explanation {
+    margin-top: 30px;
+}
+
+.chart h2, .explanation h2 {
+    text-align: center;
+    color: #1d3557;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+/* Chart Section */
+.chart {
+    background-color: #ffffff;
+    padding: 50px 25px 25px; /* Top padding for the title and extra bottom padding */
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    position: relative;
+    height: 650px; /* Increased height for a taller container */
+    display: flex; /* Enables flex alignment */
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    flex-direction: column; /* Ensures title and chart stack vertically */
+}
+
+/* Chart Title */
+.chart h2 {
+    margin: 0 0 20px; /* Adds spacing below the title */
+    font-size: 24px;
+    font-weight: 700;
+    color: #1d3557;
+    text-align: center;
+    z-index: 1; /* Ensures the title is above the chart */
+}
+
+/* Adjust Plotly Chart */
+.chart > div {
+    max-width: 100%; /* Ensures responsiveness */
+    max-height: calc(100% - 50px); /* Keeps the chart within the taller container */
+    margin: auto; /* Centers the plot itself */
+}
+
+
+
+
+
+/* Explanation Section */
+.explanation {
+    background-color: #f9fbfd;
+    border: 1px solid #dfe6ed;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    color: #333;
+}
+
+/* Text and Links */
+.explanation p {
+    color: #5c677d;
+    line-height: 1.6;
+    margin: 0;
+}
+
+
+
+/* Draggable Column Options */
+/* Draggable Column Options */
+.draggableColumn {
+    background-color: #f0f4ff; /* Subtle light blue background */
+    border: 1px solid #d0d7e5; /* Light border for structure */
+    border-radius: 6px; /* Rounded corners */
+    padding: 8px 12px; /* Reduced padding for a smaller size */
+    margin: 8px 0; /* Space between items */
+    font-size: 14px;
+    color: #1d3557; /* Dark blue text for readability */
+    font-weight: 500;
+    text-align: center; /* Center the text */
+    cursor: grab;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.draggableColumn:hover {
+    background-color: #e6edff; /* Slightly darker blue on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+}
+
+
+
+.columnsPanel::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+.columnsPanel::-webkit-scrollbar-thumb {
+    background-color: #457b9d; /* Modern blue color for the scrollbar */
+    border-radius: 5px; /* Rounded scrollbar */
+}
+
+.columnsPanel::-webkit-scrollbar-track {
+    background-color: #f9fbfd; /* Subtle background for the scrollbar track */
+}
