@@ -146,7 +146,7 @@ export default function SignUpComponent({ onClose }) {
               setIsLoading(true);
               try {
                 const res = await AxiosWrapper.post(
-                  "https://takween.ddns.ne/signup",
+                  "https://takween.ddns.net/signup",
                   signUpData,
                 );
                 setUserAlreadyExists(false);

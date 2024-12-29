@@ -63,7 +63,7 @@ export default function TCAnnotation({ projects, user }) {
         );
       } else {
         response = await AxiosWrapper.post(
-          `hhttps://takween.ddns.net/text-classification/${selectedProject}/${selectedDataSource}`,
+          `https://takween.ddns.net/text-classification/${selectedProject}/${selectedDataSource}`,
           { job_title: jobTitle, classes }
         );
       }
