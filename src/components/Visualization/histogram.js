@@ -9,12 +9,11 @@ export default function Histogram({ projects }) {
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedJob, setSelectedJob] = useState(null);
   const [jobs, setJobs] = useState([]);
-  const [tagFrequencies, setTagFrequencies] = useState(null);
+  const [tagFrequencies, setTagFrequencies] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [uploadMode, setUploadMode] = useState(false);
   const [uploadedFile, setUploadedFile] = useState(null);
 
-  // Fetch jobs when a project is selected
   useEffect(() => {
     const fetchJobs = async () => {
       if (!selectedProject) return;
@@ -33,11 +32,6 @@ export default function Histogram({ projects }) {
     fetchJobs();
   }, [selectedProject]);
 
-  const handleCancel = () => {
-    router.push('/home/visualization');
-  };
-
-  // Function to visualize data based on existing job selection
   const visualizeTagFrequencies = async () => {
     if (!selectedProject || !selectedJob) {
       alert("Please select a project and a job");
@@ -56,14 +50,13 @@ export default function Histogram({ projects }) {
     setIsLoading(false);
   };
 
-  // Function to parse and visualize uploaded .ndjson file
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
-    if (file && file.name.endsWith('.ndjson')) {
+    if (file && file.name.endsWith(".ndjson")) {
       const reader = new FileReader();
       reader.onload = () => {
-        const lines = reader.result.split('\n').filter(line => line.trim());
-        const data = lines.map(line => JSON.parse(line));
+        const lines = reader.result.split("\n").filter((line) => line.trim());
+        const data = lines.map((line) => JSON.parse(line));
         processUploadedData(data);
       };
       reader.readAsText(file);
@@ -73,15 +66,13 @@ export default function Histogram({ projects }) {
     }
   };
 
-  // Process and visualize tag frequencies from uploaded .ndjson data
   const processUploadedData = (data) => {
     const frequencies = {};
-
-    data.forEach(item => {
+    data.forEach((item) => {
       if (item.annotations) {
-        item.annotations.forEach(annotation => {
+        item.annotations.forEach((annotation) => {
           const tags = annotation.tags || [];
-          tags.forEach(tagEntry => {
+          tags.forEach((tagEntry) => {
             const tag = tagEntry.tag;
             if (tag) {
               frequencies[tag] = (frequencies[tag] || 0) + 1;
@@ -90,13 +81,11 @@ export default function Histogram({ projects }) {
         });
       }
     });
-
     setTagFrequencies(frequencies);
   };
 
   return (
     <div>
-      {/* Toggle between existing job selection and upload mode */}
       <Checkbox
         isSelected={uploadMode}
         onChange={setUploadMode}
@@ -109,7 +98,6 @@ export default function Histogram({ projects }) {
 
       {!uploadMode ? (
         <>
-          {/* Select Project and Job when not in upload mode */}
           <Select
             className="mt-5"
             fullWidth
@@ -118,11 +106,15 @@ export default function Histogram({ projects }) {
             selectedKeys={selectedProject}
             onSelectionChange={(e) => setSelectedProject(e.currentKey)}
           >
-            {projects.map((project) => (
-              <SelectItem key={project.id} value={project.id}>
-                {project.title}
-              </SelectItem>
-            ))}
+            {projects && projects.length > 0 ? (
+              projects.map((project) => (
+                <SelectItem key={project.id} value={project.id}>
+                  {project.title}
+                </SelectItem>
+              ))
+            ) : (
+              <SelectItem disabled>No projects available</SelectItem>
+            )}
           </Select>
 
           <Select
@@ -133,15 +125,21 @@ export default function Histogram({ projects }) {
             selectedKeys={selectedJob}
             onSelectionChange={(e) => setSelectedJob(e.currentKey)}
           >
-            {jobs.map((job) => (
-              <SelectItem key={job.id} value={job.id}>
-                {job.title}
-              </SelectItem>
-            ))}
+            {isLoading ? (
+              <SelectItem disabled>Loading jobs...</SelectItem>
+            ) : jobs && jobs.length > 0 ? (
+              jobs.map((job) => (
+                <SelectItem key={job.id} value={job.id}>
+                  {job.title}
+                </SelectItem>
+              ))
+            ) : (
+              <SelectItem disabled>No jobs available</SelectItem>
+            )}
           </Select>
 
           <div className="flex mt-5 space-x-4">
-            <Button onPress={handleCancel} auto color="error" flat>
+            <Button onPress={() => router.push('/home/visualization')} auto color="error" flat>
               Cancel
             </Button>
             <Button
@@ -156,19 +154,15 @@ export default function Histogram({ projects }) {
           </div>
         </>
       ) : (
-        <>
-          {/* Upload .ndjson file when in upload mode */}
-          <Input
-            type="file"
-            accept=".ndjson"
-            onChange={handleFileUpload}
-            className="mt-5"
-            fullWidth
-          />
-        </>
+        <Input
+          type="file"
+          accept=".ndjson"
+          onChange={handleFileUpload}
+          className="mt-5"
+          fullWidth
+        />
       )}
 
-      {/* Render HistogramView if tag frequencies are available */}
       {tagFrequencies && <HistogramView tagFrequencies={tagFrequencies} />}
     </div>
   );
