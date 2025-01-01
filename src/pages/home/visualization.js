@@ -162,19 +162,17 @@ export async function getServerSideProps(context) {
         const userCreatedProject = (
           await AxiosWrapper.get(
             `https://takween.ddns.net/users/${project.created_by_id}`,
-            {
-              accessToken: accessToken || "",
-            }
+            { accessToken: accessToken || "" }
           )
         ).data;
+
         const fileDataSources = (
           await AxiosWrapper.get(
-            `https://takween.ddns.net/${project.id}/file-data-sources`,
-            {
-              accessToken: accessToken || "",
-            }
+            `https://takween.ddns.net/projects/${project.id}/file-data-sources`,
+            { accessToken: accessToken || "" }
           )
         ).data;
+
         return { ...project, user: userCreatedProject, dataSources: fileDataSources };
       })
     );
