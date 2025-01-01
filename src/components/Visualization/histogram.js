@@ -9,11 +9,16 @@ export default function Histogram({ projects }) {
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedJob, setSelectedJob] = useState(null);
   const [jobs, setJobs] = useState([]);
-  const [tagFrequencies, setTagFrequencies] = useState({});
+  const [tagFrequencies, setTagFrequencies] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [uploadMode, setUploadMode] = useState(false);
   const [uploadedFile, setUploadedFile] = useState(null);
 
+  useEffect(() => {
+    console.log("Projects in Histogram:", projects);
+  }, [projects]);
+
+  // Fetch jobs when a project is selected
   useEffect(() => {
     const fetchJobs = async () => {
       if (!selectedProject) return;
@@ -31,6 +36,10 @@ export default function Histogram({ projects }) {
     };
     fetchJobs();
   }, [selectedProject]);
+
+  const handleCancel = () => {
+    router.push("/home/visualization");
+  };
 
   const visualizeTagFrequencies = async () => {
     if (!selectedProject || !selectedJob) {
@@ -139,7 +148,7 @@ export default function Histogram({ projects }) {
           </Select>
 
           <div className="flex mt-5 space-x-4">
-            <Button onPress={() => router.push('/home/visualization')} auto color="error" flat>
+            <Button onPress={handleCancel} auto color="error" flat>
               Cancel
             </Button>
             <Button
