@@ -262,7 +262,7 @@ export default function PartOfSpeechSetup({ onClose, projectId, language }) {
                 const createdJob = await AxiosWrapper.post(`https://takween.ddns.net/projects/${projectId}/jobs`, jobData);
                 const jobId = createdJob.data.id;
                 // eslint-disable-next-line no-undef
-                window.location = `https://takween.ddns.net/home/projects/${projectId}/jobs/${jobId}`;
+                window.location = `/home/projects/${projectId}/jobs/${jobId}`;
               }}
             >
               Finish
